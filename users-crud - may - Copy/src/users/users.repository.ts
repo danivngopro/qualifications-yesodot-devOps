@@ -1,24 +1,28 @@
-import { User } from './users.interface';
-import { UserModel } from './users.model';
-
 export class UserRepository {
-  static create(newUser: User): Promise<User> {
-    return UserModel.create(newUser);
+  static getNumbers(numbersArray: Array<number>): boolean {
+    let count = 0;
+    let amountOfPrimeNumbers = numbersArray.length;
+    console.log(numbersArray)
+  numbersArray.forEach((num: number) => {
+      console.log(num);
+
+      if(checkIfIsPrime(num)){
+          count++;
+      }
+  }); 
+
+  if(count === amountOfPrimeNumbers){
+      return true;
+  }else{
+      return false;
   }
-
-  static findUserByID(userId: string): Promise<User | null> {
-    return UserModel.findById(userId).exec();
+  
   }
+}
 
-  static updateUserByID(userId: string, postData: Partial<User>): Promise<User | null> {
-    return UserModel.findByIdAndUpdate(userId, postData, {new: true}).exec();
-  } 
 
-  static deleteUserByID(userId: string): Promise<User | null> {
-    return UserModel.findByIdAndDelete(userId).exec();
-  } 
-
-  static getUsersList(): Promise<User[]> {
-    return UserModel.find().exec();
-  }
+function checkIfIsPrime(num: number){
+    for(let i = 2, s = Math.sqrt(num); i <= s; i++)
+        if(num % i === 0) return false; 
+    return num > 1;
 }

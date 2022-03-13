@@ -1,12 +1,14 @@
 import * as dotenv from 'dotenv';
 import * as env from 'env-var';
 
-dotenv.config();
+
 
 export const config = {
   server: {
     name: 'users-crud',
-    port: env.get('APPLICATION_PORT').default(3001).asPortNumber(),
+    port: env.get('APPLICATION_PORT')
+    .default(1234)
+    .asString()
   },
   db: {
     connectionString: env.get('DB_CONNECTION_URL')
@@ -17,3 +19,5 @@ export const config = {
       .asString(),
   },
 };
+
+dotenv.config();
