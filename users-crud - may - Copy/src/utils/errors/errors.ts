@@ -18,15 +18,3 @@ export class PrimeError extends ApplicationError {
     super(message, status);
   }
 }
-
-export class ServiceError extends ApplicationError {
-  constructor(message = 'Service Error', status = 400) {
-    super(message, status);
-  }
-}
-
-export class ServerError extends ApplicationError {
-  constructor(message = 'Server Error', status = 500) {
-    super(message, status);
-  }
-}
