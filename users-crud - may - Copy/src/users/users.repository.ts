@@ -18,6 +18,21 @@ export class UserRepository {
   }
   
   }
+
+
+  static getPrimeNumbers(amount: number): number[] {
+      let primeNumbersArray :  number[] = [];
+      let ArrayLocation = 0;
+      for(let index = 1; index <= amount; index++){
+          if(checkIfIsPrime(index)){
+            primeNumbersArray[ArrayLocation] = index;
+            ArrayLocation++;
+          }
+      }
+      return primeNumbersArray;
+
+  }
+
 }
 
 
