@@ -1,8 +1,8 @@
-export interface User {
+export interface Prime {
   id?: string;
   firstName: string;
   lastName: string;
-  username: string;
+  primename: string;
   email: string;
   password: string;
 }

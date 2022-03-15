@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { UserRouter } from './users/users.router';
+import { PrimeRouter } from './primes/primes.router';
 
 const AppRouter: Router = Router();
 
-AppRouter.use('/api/numbers', UserRouter);
+AppRouter.use('/api/numbers', PrimeRouter);
 
 AppRouter.use('/isalive', (_req, res) => {
   res.status(200).send('alive');

@@ -1,14 +1,14 @@
-# USERS Crud
+# PRIMES Crud
 ## Table of Contents
 - [Full Setup](#full-setup)
     - [Installation](#installation)
     - [Run](#run)
 - [Usage](#usage)
     - [HTTP paths](#http-paths)
-    - [get a user](#army-id)
-    - [get a user's auth](#validate-question)
-    - [Post a new user](#/)
-    - [update a user](#army-id)
+    - [get a prime](#army-id)
+    - [get a prime's auth](#validate-question)
+    - [Post a new prime](#/)
+    - [update a prime](#army-id)
 
 ## Full Setup
 ### Installation
@@ -16,7 +16,7 @@
 ```bash
 git clone https://gitlab.com/yesodot/selenium/apollo/sociometry/sociometry-ui.git
 
-cd user-crud
+cd prime-crud
 
 npm install
 ```
@@ -32,28 +32,28 @@ npm start
 
 | METHOD | ENDPOINT                                                         | DESCRIPTION                                       |
 | ------ | :----------------------------------------------------------------| :----------------------------------------------    |
-| Post   |  create                                                          | create a user                                          |
-| Put    |  updateByusername                                                  | update a user                                      |
-| Get    |  getByusername                                                     | get by army id                                     |
+| Post   |  create                                                          | create a prime                                          |
+| Put    |  updateByprimename                                                  | update a prime                                      |
+| Get    |  getByprimename                                                     | get by army id                                     |
 | Get    |  validateQuestion                                                | get auth by army id                                     |
 
 **-------------------------------------------------------------------------------------------------------------------------------------**
 
 ### create
-post a user
+post a prime
 #### Paramters
 | Name   | Type   | Description                                                    |
-| username  | string | army id of the user  |
-| firstName  | string | first name of the user  |
-| lastName  | string | lastname of the user  |
+| primename  | string | army id of the prime  |
+| firstName  | string | first name of the prime  |
+| lastName  | string | lastname of the prime  |
 | permissions  | permissionType | basic, mada or segel  |
-| validationQuestion  | {string, string} | the question and the anwer of the user  |
+| validationQuestion  | {string, string} | the question and the anwer of the prime  |
 
 #### Response
 ```typescript
 "status": "200 OK"
 {
-    "username": "8599492",
+    "primename": "8599492",
     "firstName": "string",
     "lastName": "string",
     "permissions": ["QUESTION1"],
@@ -64,17 +64,17 @@ post a user
 }
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
-### getByusername
-get a user
+### getByprimename
+get a prime
 #### Paramters
 | Name   | Type   | Description                                                    |
-| username  | string | the username of the user in the params |
+| primename  | string | the primename of the prime in the params |
 
 #### Response
 ```typescript
 "status": "200 OK"
 {
-    "username": "8599492",
+    "primename": "8599492",
     "firstName": "string",
     "lastName": "string",
     "permissions": ["QUESTION1"],
@@ -86,21 +86,21 @@ get a user
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
 
-### updateByusername
-update a user
+### updateByprimename
+update a prime
 #### Paramters
 | Name   | Type   | Description                                                    |
-| username  | string | army id of the user  |
-| firstName  | string | first name of the user  |
-| lastName  | string | lastname of the user  |
+| primename  | string | army id of the prime  |
+| firstName  | string | first name of the prime  |
+| lastName  | string | lastname of the prime  |
 | permissions  | permissionType | basic, mada or segel  |
-| validationQuestion  | {string, string} | the question and the anwer of the user  |
+| validationQuestion  | {string, string} | the question and the anwer of the prime  |
 
 #### Response
 ```typescript
 "status": "200 OK"
 {
-    "username": "8599492",
+    "primename": "8599492",
     "firstName": "string",
     "lastName": "string",
     "permissions": ["QUESTION1"],
@@ -112,12 +112,12 @@ update a user
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
 ### validateQuestion
-authenticate the question and answer of a user
+authenticate the question and answer of a prime
 #### Paramters
 | Name   | Type   | Description                                                    |
-| username  | string | army id of the user  |
-| question  | string | question  of the user  |
-| answer  | string | answer of the user  |
+| primename  | string | army id of the prime  |
+| question  | string | question  of the prime  |
+| answer  | string | answer of the prime  |
 
 #### Response
 ```typescript

@@ -1,26 +1,26 @@
-import { UserError } from './errors';
+import { PrimeError } from './errors';
 
-export class ValidationError extends UserError {
+export class ValidationError extends PrimeError {
   constructor() {
     /* istanbul ignore next */
     super('Validation error', 400);
   }
 }
 
-export class IdInvalidError extends UserError {
+export class IdInvalidError extends PrimeError {
   /* istanbul ignore next */
   constructor(message = 'Id is invalid') {
     super(message, 400);
   }
 }
 /* istanbul ignore next */
-export class UsernameInvalidError extends UserError {
-  constructor(message = 'username is invalid') {
+export class PrimenameInvalidError extends PrimeError {
+  constructor(message = 'primename is invalid') {
     super(message, 400);
   }
 }
-export class UserNotFound extends UserError {
+export class PrimeNotFound extends PrimeError {
   constructor() {
-    super('User not found', 404);
+    super('Prime not found', 404);
   }
 }

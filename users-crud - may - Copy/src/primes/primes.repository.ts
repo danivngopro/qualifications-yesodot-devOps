@@ -1,4 +1,4 @@
-export class UserRepository {
+export class PrimeRepository {
   static getNumbers(numbersArray: Array<number>): boolean {
     let count = 0;
     let amountOfPrimeNumbers = numbersArray.length;

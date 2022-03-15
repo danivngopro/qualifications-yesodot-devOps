@@ -5,7 +5,7 @@ import * as env from 'env-var';
 
 export const config = {
   server: {
-    name: 'users-crud',
+    name: 'primes-crud',
     port: env.get('APPLICATION_PORT')
     .default(1234)
     .asString()
@@ -14,8 +14,8 @@ export const config = {
     connectionString: env.get('DB_CONNECTION_URL')
       .default('mongodb://localhost:27017')
       .asString(),
-    dbName: env.get('USER_DB_NAME')
-      .default('users-crud')
+    dbName: env.get('PRIME_DB_NAME')
+      .default('primes-crud')
       .asString(),
   },
 };

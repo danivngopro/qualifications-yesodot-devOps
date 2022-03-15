@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 import * as mongoose from 'mongoose';
-import { User } from './users.interface';
+import { Prime } from './primes.interface';
 
-const userSchema: mongoose.Schema = new mongoose.Schema({
+const primeSchema: mongoose.Schema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -12,7 +12,7 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {
+  primename: {
     type: String,
     required: true,
     unique: true,
@@ -42,6 +42,6 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
   timestamps: { createdAt: true, updatedAt: false },
 });
 
-userSchema.index({ firstName: 1, lastName: 1 });
+primeSchema.index({ firstName: 1, lastName: 1 });
 
-export const UserModel = mongoose.model<User & mongoose.Document>('User', userSchema);
+export const PrimeModel = mongoose.model<Prime & mongoose.Document>('Prime', primeSchema);

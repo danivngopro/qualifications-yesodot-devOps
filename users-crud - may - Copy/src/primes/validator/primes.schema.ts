@@ -1,9 +1,9 @@
 import * as Joi from 'joi';
 
-const UserSchema = Joi.object({
+const PrimeSchema = Joi.object({
   firstName: Joi.string(),
   lastName: Joi.string(),
-  username: Joi.string(),
+  primename: Joi.string(),
   email: Joi.string().regex(/^\S+@\S+\.\S+$/),
   password: Joi.string(),
 });
@@ -16,8 +16,8 @@ const amountSchema = Joi.object({
   amount: Joi.number().greater(1).less(32),
 });
 
-export const createUserReqSchema = Joi.object({
-  body: UserSchema,
+export const createPrimeReqSchema = Joi.object({
+  body: PrimeSchema,
   query: {},
   params: {},
 });
@@ -35,7 +35,7 @@ export const getAllSchema = Joi.object({
 });
 
 export const updatByIdSchema = Joi.object({
-  body: UserSchema,
+  body: PrimeSchema,
   query: {},
   params: IdSchema,
 });

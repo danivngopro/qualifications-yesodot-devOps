@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { UserRepository } from './users.repository';
+import { PrimeRepository } from './primes.repository';
 
-export class UserManager {
+export class PrimeManager {
     static async getNumbers(numbersArray: Array<number>): Promise<boolean> {
-      return UserRepository.getNumbers(numbersArray);
+      return PrimeRepository.getNumbers(numbersArray);
     }
 
     static async getPrimeNumbers(amount: number): Promise<number[]> {
-      return UserRepository.getPrimeNumbers(amount);
+      return PrimeRepository.getPrimeNumbers(amount);
     }
 }
