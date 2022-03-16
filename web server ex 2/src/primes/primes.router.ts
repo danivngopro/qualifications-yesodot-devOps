@@ -10,6 +10,6 @@ import {
 const PrimeRouter: Router = Router();
 
 PrimeRouter.post('/prime/validate', ValidateRequest(NumbersSchema) ,wrapAsync(PrimeController.areNumbersPrimes)); 
-PrimeRouter.get('/prime', ValidateRequest(createInputNumberSchema) , wrapAsync(PrimeController.returnPrimeInRange));
+PrimeRouter.get('/prime', ValidateRequest(createInputNumberSchema) , wrapAsync(PrimeController.primesInRange));
 
 export { PrimeRouter };

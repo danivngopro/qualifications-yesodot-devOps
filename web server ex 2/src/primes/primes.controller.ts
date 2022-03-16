@@ -9,9 +9,9 @@ export class PrimeController {
       res.json(await PrimeManager.areNumbersPrimes(inputNumbers));
     } 
 
-    static async returnPrimeInRange(req: Request, res: Response): Promise<void> {
+    static async primesInRange(req: Request, res: Response): Promise<void> {
     const inputNumberForRange = req.query.amount as unknown as number;
-    res.json(await PrimeManager.returnPrimeInRange(inputNumberForRange));
+    res.json(await PrimeManager.primesInRange(inputNumberForRange));
   } 
 
   }

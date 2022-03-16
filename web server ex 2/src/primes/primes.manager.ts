@@ -5,29 +5,29 @@ import { emptyArrayError } from "../utils/errors/prime";
 export class PrimeManager {
   static async areNumbersPrimes(inputNumbers: Array<number>): Promise<boolean> {
     let amountOfPrimeNumbers = 0;
-    const amountOfAllNumbers = inputNumbers.length;
+    const length = inputNumbers.length;
     inputNumbers.forEach((num: number) => {
       if (isPrime(num)) {
         amountOfPrimeNumbers++;
       }
     });
 
-    if(inputNumbers.length === 0){
+    if(length === 0){
        throw new emptyArrayError;
-    } else if(amountOfPrimeNumbers === amountOfAllNumbers){
+    } else if(amountOfPrimeNumbers === length){
       return true;
     } else{
       return false;
     }
   }
 
-  static async returnPrimeInRange(inputNumberForRange: number): Promise<number[]> {
+  static async primesInRange(inputNumberForRange: number): Promise<number[]> {
     const primeNumbers: number[] = [];
-    let ArrayLocation = 0;
-    for (let firstNumberInRange = 1; firstNumberInRange <= inputNumberForRange; firstNumberInRange++) {
-      if (isPrime(firstNumberInRange)) {
-        primeNumbers[ArrayLocation] = firstNumberInRange;
-        ArrayLocation++;
+    let arrayIndex = 0;
+    for (let currentNumber = 1; currentNumber <= inputNumberForRange; currentNumber++) {
+      if (isPrime(currentNumber)) {
+        primeNumbers[arrayIndex] = currentNumber;
+        arrayIndex++;
       }
     }
       return primeNumbers;
