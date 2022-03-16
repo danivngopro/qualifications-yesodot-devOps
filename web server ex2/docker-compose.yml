@@ -1,9 +1,0 @@
-version: "3"
-services:
-  primes-service:
-    build: ./
-    environment: 
-        APPLICATION_PORT: 3001
-    ports:
-      - "3001:3001"
-    
