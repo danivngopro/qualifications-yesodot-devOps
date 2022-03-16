@@ -5,7 +5,7 @@ import { emptyArrayError } from "../utils/errors/prime";
 export class PrimeManager {
   static async getNumbers(numbersArray: Array<number>): Promise<boolean> {
     let count = 0;
-    let amountOfPrimeNumbers = numbersArray.length;
+    const amountOfPrimeNumbers = numbersArray.length;
     numbersArray.forEach((num: number) => {
       if (checkIfIsPrime(num)) {
         count++;
@@ -22,7 +22,7 @@ export class PrimeManager {
   }
 
   static async getPrimeNumbers(amount: number): Promise<number[]> {
-    let primeNumbersArray: number[] = [];
+    const primeNumbersArray: number[] = [];
     let ArrayLocation = 0;
     for (let index = 1; index <= amount; index++) {
       if (checkIfIsPrime(index)) {

@@ -7,7 +7,7 @@ export const config = {
   server: {
     name: 'primes-crud',
     port: env.get('APPLICATION_PORT')
-    .default(1234)
+    .default(3001)
     .asString()
   },
 };
