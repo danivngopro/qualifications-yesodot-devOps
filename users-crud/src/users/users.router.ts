@@ -9,4 +9,5 @@ import {
 const UserRouter: Router = Router();
 
 UserRouter.post('/', ValidateRequest(createUserReqSchema), wrapAsync(UserController.create));
+
 export { UserRouter };

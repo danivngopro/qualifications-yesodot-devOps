@@ -18,7 +18,7 @@ import { config } from './config';
   });
 
   mongoose.connection.on('error', () => {
-    logger.log(SeverityLevel.Error, '[MongoDB] error');
+    logger.log(SeverityLevel.Informational, '[MongoDB] error');
   });
 
   mongoose.connection.on('disconnected', () => {
