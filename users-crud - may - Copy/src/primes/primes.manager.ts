@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { emptyArrayError } from "../utils/errors/prime";
+
 export class PrimeManager {
   static async getNumbers(numbersArray: Array<number>): Promise<boolean> {
+    // if(numbersArray === null){
+    //    throw new emptyArrayError;
+    // }
     let count = 0;
     let amountOfPrimeNumbers = numbersArray.length;
     numbersArray.forEach((num: number) => {
@@ -10,11 +15,19 @@ export class PrimeManager {
       }
     });
 
-    if (count === amountOfPrimeNumbers) {
+    if(numbersArray.length === 0){
+       throw new emptyArrayError;
+    } else if(count === amountOfPrimeNumbers){
       return true;
-    } else {
+    } else{
       return false;
     }
+
+    // if (count === amountOfPrimeNumbers) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   static async getPrimeNumbers(amount: number): Promise<number[]> {
@@ -26,7 +39,7 @@ export class PrimeManager {
         ArrayLocation++;
       }
     }
-    return primeNumbersArray;
+      return primeNumbersArray;
   }
 }
 
