@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
 
-const amountSchema = Joi.object({
+const inputNumberSchema = Joi.object({
   amount: Joi.number().greater(1).less(32),
 });
 
@@ -8,13 +8,13 @@ const numbersSchema = Joi.object({
   numbers: Joi.array().items(Joi.number()),
 });
 
-export const checkTheAmountSchema = Joi.object({
+export const createInputNumberSchema = Joi.object({
   body: {},
-  query: amountSchema,
+  query: inputNumberSchema,
   params: {},
 });
 
-export const checkTheNumbersSchema = Joi.object({
+export const NumbersSchema = Joi.object({
   body: numbersSchema,
   query: {},
   params: {},

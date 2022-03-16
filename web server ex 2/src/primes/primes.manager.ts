@@ -3,38 +3,38 @@
 import { emptyArrayError } from "../utils/errors/prime";
 
 export class PrimeManager {
-  static async getNumbers(numbersArray: Array<number>): Promise<boolean> {
-    let count = 0;
-    const amountOfPrimeNumbers = numbersArray.length;
-    numbersArray.forEach((num: number) => {
-      if (checkIfIsPrime(num)) {
-        count++;
+  static async areNumbersPrimes(inputNumbers: Array<number>): Promise<boolean> {
+    let amountOfPrimeNumbers = 0;
+    const amountOfAllNumbers = inputNumbers.length;
+    inputNumbers.forEach((num: number) => {
+      if (isPrime(num)) {
+        amountOfPrimeNumbers++;
       }
     });
 
-    if(numbersArray.length === 0){
+    if(inputNumbers.length === 0){
        throw new emptyArrayError;
-    } else if(count === amountOfPrimeNumbers){
+    } else if(amountOfPrimeNumbers === amountOfAllNumbers){
       return true;
     } else{
       return false;
     }
   }
 
-  static async getPrimeNumbers(amount: number): Promise<number[]> {
-    const primeNumbersArray: number[] = [];
+  static async returnPrimeInRange(inputNumberForRange: number): Promise<number[]> {
+    const primeNumbers: number[] = [];
     let ArrayLocation = 0;
-    for (let index = 1; index <= amount; index++) {
-      if (checkIfIsPrime(index)) {
-        primeNumbersArray[ArrayLocation] = index;
+    for (let firstNumberInRange = 1; firstNumberInRange <= inputNumberForRange; firstNumberInRange++) {
+      if (isPrime(firstNumberInRange)) {
+        primeNumbers[ArrayLocation] = firstNumberInRange;
         ArrayLocation++;
       }
     }
-      return primeNumbersArray;
+      return primeNumbers;
   }
 }
 
-function checkIfIsPrime(num: number) {
+function isPrime(num: number) {
   for (let i = 2, s = Math.sqrt(num); i <= s; i++)
     if (num % i === 0) return false;
   return num > 1;
