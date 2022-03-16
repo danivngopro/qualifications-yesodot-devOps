@@ -4,9 +4,6 @@ import { emptyArrayError } from "../utils/errors/prime";
 
 export class PrimeManager {
   static async getNumbers(numbersArray: Array<number>): Promise<boolean> {
-    // if(numbersArray === null){
-    //    throw new emptyArrayError;
-    // }
     let count = 0;
     let amountOfPrimeNumbers = numbersArray.length;
     numbersArray.forEach((num: number) => {
@@ -22,12 +19,6 @@ export class PrimeManager {
     } else{
       return false;
     }
-
-    // if (count === amountOfPrimeNumbers) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
   }
 
   static async getPrimeNumbers(amount: number): Promise<number[]> {
