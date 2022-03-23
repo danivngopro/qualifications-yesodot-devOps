@@ -19,27 +19,27 @@ export class BookManager {
   }
 
   static async getBooksListByAuthor(author: string): Promise<Book> {
-    const a: any = BookRepository.getBooksListByAuthor(author);
-    if(a != null){
-      return a;
+    const booksList: any = BookRepository.getBooksListByAuthor(author);
+    if(booksList != null){
+      return booksList;
     } else{
       throw new AuthorNotFound;
     }
   }
 
   static async findBookByName(bookName: string): Promise<Book> {
-    const a: any = await BookRepository.findBookByName(bookName);
-    if(a){
-      return a;
+    const book: any = await BookRepository.findBookByName(bookName);
+    if(book){
+      return book;
     } else{
       throw new BookNotFound;
     }
   }
 
   static async findBookByDescription(bookDescription: string): Promise<Book> {
-    const a: any = await BookRepository.findBookByDescription(bookDescription);
-    if(a){
-      return a;
+    const book: any = await BookRepository.findBookByDescription(bookDescription);
+    if(book){
+      return book;
     } else{
       throw new BookNotFound;
     }
