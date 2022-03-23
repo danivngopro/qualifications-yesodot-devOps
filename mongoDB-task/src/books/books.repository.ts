@@ -12,7 +12,7 @@ export class BookRepository {
 
   static getBooksListByAuthor(author: string): Promise<Book[] | null> {
     return BookModel.find({author}).exec();
-  }//bbn
+  }
 
   static findBookByName(bookName: string): Promise<Book | null> {
     return BookModel.findOne({bookName}).exec();

@@ -2,13 +2,16 @@
 import { BookRepository } from './books.repository';
 import { Author, Book } from './books.interface';
 import { AuthorNotFound, BookNotFound } from '../utils/errors/book';
+import { BookModel } from './books.model';
 
 export class BookManager {
   static async create(newBook: Book, author: string): Promise<Book> {
-    if(author){
-      console.log('******');
+    if(await BookModel.find({ author })){
+      return BookRepository.create(newBook);
+    } else{
+      throw new AuthorNotFound;
     }
-    return BookRepository.create(newBook);
+    
   }
   
   static async createAuthor(newAuthor: Author): Promise<Author> {
@@ -44,7 +47,7 @@ export class BookManager {
 
   static async pagesInRange(): Promise<Book[]> {
     const pagesArray = await BookRepository.pagesInRange();
-    return pagesArray.sort((a, b) => (a.numOfPages > b.numOfPages) ? 1 : -1);;
+    return pagesArray.sort((a, b) => (a.numOfPages > b.numOfPages) ? 1 : -1);
   }
  
   static async  getBooksList(): Promise<Book[]> {
