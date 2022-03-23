@@ -4,7 +4,7 @@ const BookSchema = Joi.object({
   bookName: Joi.string(),
   bookDescription: Joi.string(),
   dateOfBublication: Joi.string(),
-  author: Joi.string(),
+  author: Joi.string().regex(/\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm),
   numOfPages: Joi.number(),
 });
 
