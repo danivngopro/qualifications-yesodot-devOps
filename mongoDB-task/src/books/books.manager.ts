@@ -2,16 +2,16 @@
 import { BookRepository } from './books.repository';
 import { Author, Book } from './books.interface';
 import { AuthorNotFound, BookNotFound } from '../utils/errors/book';
-import { BookModel } from './books.model';
+
 
 export class BookManager {
-  static async create(newBook: Book, author: string): Promise<Book> {
-    if(await BookModel.find({ author })){
-      return BookRepository.create(newBook);
-    } else{
+  static async create(newBook: Book): Promise<Book> {
+    const author = newBook.author;
+    if(await BookManager.getBooksListByAuthor(author) === null){   
       throw new AuthorNotFound;
+    } else{
+      return BookRepository.create(newBook);
     }
-    
   }
   
   static async createAuthor(newAuthor: Author): Promise<Author> {

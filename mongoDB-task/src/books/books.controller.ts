@@ -6,8 +6,7 @@ import { BookManager } from './books.manager';
 export class BookController {
   static async create(req: Request, res: Response): Promise<void> { // new book 
     const newBook = req.body;
-    const author = req.body.author;
-    res.json(await BookManager.create(newBook, author));
+    res.json(await BookManager.create(newBook));
   }
 
   static async createAuthor(req: Request, res: Response): Promise<void> { // new author
