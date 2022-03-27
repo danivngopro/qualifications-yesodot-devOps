@@ -34,7 +34,7 @@ export class BookController {
     res.json(await BookManager.pagesInRange());
   }
 
-  static async  getBooksList(_req: Request, res: Response): Promise<void> {
-    res.json(await BookManager.getBooksList());
+  static async sortedBooks(_req: Request, res: Response): Promise<void> {
+    res.json(await BookManager.sortedBooks());
   }
 }

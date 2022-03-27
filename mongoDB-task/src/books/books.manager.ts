@@ -50,7 +50,7 @@ export class BookManager {
     return pagesArray.sort((a, b) => (a.numOfPages > b.numOfPages) ? 1 : -1);
   }
  
-  static async  getBooksList(): Promise<Book[]> {
+  static async  sortedBooks(): Promise<Book[]> {
     return BookRepository.getBooksList();
   }
 }
