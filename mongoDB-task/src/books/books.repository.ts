@@ -31,21 +31,21 @@ export class BookRepository {
     return BookModel.find().exec();
   }
 
-   static async filteredBooks(){
-    await BookModel.aggregate( [
-      {
-        $match:{ numberOfPages: { $gte: 200 }, dateOfBublication: { '$gt': 2015, '$lt': 2020}, author: {$regex: /^p/, $options: "i"}}
-      },
+  //  static async filteredBooks(){
+  //   await BookModel.aggregate( [
+  //     {
+  //       $match:{ numberOfPages: { $gte: 200 }, dateOfPublication: { '$gt': 2015, '$lt': 2020}, author: {$regex: /^p/, $options: "i"}}
+  //     },
 
-      {
-        $sort: { author: 1, numberOfPages: 1}
-      },
+  //     {
+  //       $sort: { author: 1, numberOfPages: 1}
+  //     },
 
-      {
-         $project: { bookName: 1, author: 1 }
-      },
-      ]).exec()
-  }
+  //     {
+  //        $project: { bookName: 1, author: 1 }
+  //     },
+  //     ]).exec()
+  // }
 }
-console.log(BookRepository.filteredBooks());
+// console.log(BookRepository.filteredBooks());
 
