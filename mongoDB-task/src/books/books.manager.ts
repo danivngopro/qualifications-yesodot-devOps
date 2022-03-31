@@ -1,13 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { BookRepository } from './books.repository';
 import { Author, Book } from './books.interface';
 import { AuthorNotFound, BookNotFound } from '../utils/errors/book';
 
-
 export class BookManager {
   static async create(newBook: Book): Promise<Book> {
     const author = newBook.author;
-    if(await BookManager.getBooksListByAuthor(author) === null){   
+    newBook.dateOfBublication = new Date(newBook.dateOfBublication);  
+    console.log('line 9', await BookManager.getBooksListByAuthor(author));
+    if((await BookManager.getBooksListByAuthor(author)) === ([])){   //debug - check what getBooksList.. returns
+      console.log('line 555559')
       throw new AuthorNotFound;
     } else{
       return BookRepository.create(newBook);
@@ -18,26 +19,16 @@ export class BookManager {
     return BookRepository.createAuthor(newAuthor);
   }
 
-  static async getBooksListByAuthor(author: string): Promise<Book> {
+  static async getBooksListByAuthor(author: string) {
     const booksList: any = BookRepository.getBooksListByAuthor(author);
-    if(booksList != null){
-      return booksList;
-    } else{
+    if(booksList && booksList.length===0 ){
       throw new AuthorNotFound;
     }
+    return booksList;
   }
 
-  static async findBookByName(bookName: string): Promise<Book> {
-    const book: any = await BookRepository.findBookByName(bookName);
-    if(book){
-      return book;
-    } else{
-      throw new BookNotFound;
-    }
-  }
-
-  static async findBookByDescription(bookDescription: string): Promise<Book> {
-    const book: any = await BookRepository.findBookByDescription(bookDescription);
+  static async findBook(bookFilter: string): Promise<Book> {
+    const book: any = await BookRepository.findBook(bookFilter);
     if(book){
       return book;
     } else{
@@ -49,8 +40,18 @@ export class BookManager {
     const pagesArray = await BookRepository.pagesInRange();
     return pagesArray.sort((a, b) => (a.numOfPages > b.numOfPages) ? 1 : -1);
   }
- 
+  
   static async  sortedBooks(): Promise<Book[]> {
     return BookRepository.getBooksList();
   }
+
+  static async  filteredBooks(): Promise<Book[]> {
+    return BookRepository.filteredBooks();
+  }
 }
+
+
+
+
+
+

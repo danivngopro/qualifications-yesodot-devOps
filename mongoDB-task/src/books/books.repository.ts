@@ -15,12 +15,8 @@ export class BookRepository {
     return BookModel.find({author}).exec();
   }
 
-  static findBookByName(bookName: string): Promise<Book | null> {
-    return BookModel.findOne({bookName}).exec();
-  } 
-
-  static findBookByDescription(bookDescription: string): Promise<Book | null> {
-    return BookModel.findOne({bookDescription}).exec();
+  static findBook(bookFilter: string): Promise<Book | null> {
+    return BookModel.findOne({bookFilter}).exec();
   } 
 
   static pagesInRange(): Promise<Book[]> {
@@ -31,21 +27,25 @@ export class BookRepository {
     return BookModel.find().exec();
   }
 
-  //  static async filteredBooks(){
-  //   await BookModel.aggregate( [
-  //     {
-  //       $match:{ numberOfPages: { $gte: 200 }, dateOfPublication: { '$gt': 2015, '$lt': 2020}, author: {$regex: /^p/, $options: "i"}}
-  //     },
+   static filteredBooks(): Promise<any[]>{
+     return BookModel.aggregate( [
+      {
+        $match:{ numOfPages: { $gte: 200 },
+        dateOfBublication: { $gt:  new Date("2015-01-01"), $lt: new Date("2020-01-01")}, 
+        author: {$regex: /^p/, $options: "i"} } 
+      },
+      
+      {
+        $sort: { author: 1, numberOfPages: 1}
+      },
 
-  //     {
-  //       $sort: { author: 1, numberOfPages: 1}
-  //     },
-
-  //     {
-  //        $project: { bookName: 1, author: 1 }
-  //     },
-  //     ]).exec()
-  // }
+      {
+         $project: { bookName: 1, author: 1 }
+      },
+      ]).exec()
+  }
 }
-// console.log(BookRepository.filteredBooks());
+
+
+
 

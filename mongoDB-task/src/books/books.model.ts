@@ -7,15 +7,15 @@ const bookSchema: mongoose.Schema = new mongoose.Schema({
   bookName: {
     type: String,
     required: true,
+    unique: true,
   },
   bookDescription: {
     type: String,
     required: true,
   },
-  dateOfPublication: {
-    type: String,
+  dateOfBublication: {
+    type: Date,
     required: true,
-    unique: true,
   },
   author: {
     type: String,
@@ -28,7 +28,6 @@ const bookSchema: mongoose.Schema = new mongoose.Schema({
 }, {
   toJSON: {
     virtuals: true,
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     transform(_doc, ret) {
       delete ret._id;
     },
@@ -55,7 +54,6 @@ const authorSchema: mongoose.Schema = new mongoose.Schema({
 },{
   toJSON: {
     virtuals: true,
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     transform(_doc, ret) {
       delete ret._id;
     },

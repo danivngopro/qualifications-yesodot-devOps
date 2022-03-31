@@ -18,6 +18,7 @@ BookRouter.get('/view', ValidateRequest(getAuthorListSchema), wrapAsync(BookCont
 BookRouter.get('/search', ValidateRequest(getBookSchema), wrapAsync(BookController.findBook));
 BookRouter.get('/pages', ValidateRequest(getAllInRangeSchema),wrapAsync(BookController.pagesInRange));
 BookRouter.get('/sortedBooks', ValidateRequest(getAllInRangeSchema),wrapAsync(BookController.sortedBooks));
+BookRouter.get('/specialFilter', ValidateRequest(getAllInRangeSchema),wrapAsync(BookController.filteredBooks));
 
 
 export { BookRouter };

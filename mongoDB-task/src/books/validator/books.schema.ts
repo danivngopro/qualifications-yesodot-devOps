@@ -3,8 +3,8 @@ import * as Joi from 'joi';
 const BookSchema = Joi.object({
   bookName: Joi.string(),
   bookDescription: Joi.string(),
-  dateOfPublication: Joi.string(),
-  author: Joi.string().regex(/^[a-zA-Z0-9_ ]*$/), //^[a-zA-Z0-9_ ]*$
+  dateOfBublication: Joi.string(),
+  author: Joi.string().regex(/^[a-zA-Z0-9_ ]*$/), 
   numOfPages: Joi.number(),
 });
 

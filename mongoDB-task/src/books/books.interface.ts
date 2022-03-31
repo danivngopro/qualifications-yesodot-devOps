@@ -1,7 +1,7 @@
 export interface Book {
   bookName: string;
   bookDescription: string;
-  dateOfBublication: string;
+  dateOfBublication: Date;
   author: string;  
   numOfPages: number;
 }
@@ -11,4 +11,3 @@ export interface Author {
   lastName: string;
   bornYear: number;
 }
-//
