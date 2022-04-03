@@ -1,14 +1,18 @@
 import { BookRepository } from './books.repository';
 import { Author, Book } from './books.interface';
 import { AuthorNotFound, BookNotFound } from '../utils/errors/book';
+import { AutorModel } from './books.model';
+
 
 export class BookManager {
   static async create(newBook: Book): Promise<Book> {
-    const author = newBook.author;
+    const authorName = newBook.author.split(' ',2);
+    const firstName = authorName[0];
+    const lastName = authorName[1];
+    const authorList = await AutorModel.find({firstName, lastName}).exec();
+    console.log("line 11", authorList);
     newBook.dateOfBublication = new Date(newBook.dateOfBublication);  
-    console.log('line 9', await BookManager.getBooksListByAuthor(author));
-    if((await BookManager.getBooksListByAuthor(author)) === ([])){   //debug - check what getBooksList.. returns
-      console.log('line 555559')
+    if(authorList && authorList.length === 0){   //debug - check what getBooksList.. returns
       throw new AuthorNotFound;
     } else{
       return BookRepository.create(newBook);
