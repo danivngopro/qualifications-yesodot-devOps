@@ -11,6 +11,10 @@ export class BookRepository {
     return AutorModel.create(newAuthor); 
   }
 
+  static searchAuthor(firstName: string, lastName:string): Promise<Author[]>{
+    return AutorModel.find({firstName, lastName}).exec();
+  }
+
   static getBooksListByAuthor(author: string): Promise<Book[] | null> {
     return BookModel.find({author}).exec();
   }

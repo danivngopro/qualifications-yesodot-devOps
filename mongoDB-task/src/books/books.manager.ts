@@ -1,7 +1,7 @@
 import { BookRepository } from './books.repository';
 import { Author, Book } from './books.interface';
 import { AuthorNotFound, BookNotFound } from '../utils/errors/book';
-import { AutorModel } from './books.model';
+
 
 
 export class BookManager {
@@ -9,7 +9,8 @@ export class BookManager {
     const authorName = newBook.author.split(' ',2);
     const firstName = authorName[0];
     const lastName = authorName[1];
-    const authorList = await AutorModel.find({firstName, lastName}).exec();
+    console.log(firstName, lastName);
+    const authorList = await BookRepository.searchAuthor(firstName, lastName);
     console.log("line 11", authorList);
     newBook.dateOfBublication = new Date(newBook.dateOfBublication);  
     if(authorList && authorList.length === 0){   //debug - check what getBooksList.. returns
