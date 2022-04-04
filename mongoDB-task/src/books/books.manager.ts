@@ -13,7 +13,7 @@ export class BookManager {
     const authorList = await BookRepository.searchAuthor(firstName, lastName);
     console.log("line 11", authorList);
     newBook.dateOfBublication = new Date(newBook.dateOfBublication);  
-    if(authorList && authorList.length === 0){   //debug - check what getBooksList.. returns
+    if(authorList.length === 0){
       throw new AuthorNotFound;
     } else{
       return BookRepository.create(newBook);
