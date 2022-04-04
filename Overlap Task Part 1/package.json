@@ -1,7 +1,7 @@
 {
-  "name": "persons-service",
+  "name": "users-service",
   "version": "0.0.7",
-  "description": "Persons Service",
+  "description": "Users Service",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/yesodot/selenium/blueomek/persons-service.git"
+    "url": "https://gitlab.com/yesodot/selenium/blueomek/users-service.git"
   },
   "author": "Daniel Ventura",
   "license": "ISC",

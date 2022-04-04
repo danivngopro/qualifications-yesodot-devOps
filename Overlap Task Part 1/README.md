@@ -1,14 +1,14 @@
-# PERSONS Crud
+# USERS Crud
 ## Table of Contents
 - [Full Setup](#full-setup)
     - [Installation](#installation)
     - [Run](#run)
 - [Usage](#usage)
     - [HTTP paths](#http-paths)
-    - [get a person](#army-id)
-    - [get a person's auth](#validate-question)
-    - [Post a new person](#/)
-    - [update a person](#army-id)
+    - [get a user](#army-id)
+    - [get a user's auth](#validate-question)
+    - [Post a new user](#/)
+    - [update a user](#army-id)
 
 ## Full Setup
 ### Installation
@@ -16,7 +16,7 @@
 ```bash
 git clone https://gitlab.com/yesodot/selenium/apollo/sociometry/sociometry-ui.git
 
-cd person-crud
+cd user-crud
 
 npm install
 ```
@@ -32,28 +32,28 @@ npm start
 
 | METHOD | ENDPOINT                                                         | DESCRIPTION                                       |
 | ------ | :----------------------------------------------------------------| :----------------------------------------------    |
-| Post   |  create                                                          | create a person                                          |
-| Put    |  updateBypersonname                                                  | update a person                                      |
-| Get    |  getBypersonname                                                     | get by army id                                     |
+| Post   |  create                                                          | create a user                                          |
+| Put    |  updateByusername                                                  | update a user                                      |
+| Get    |  getByusername                                                     | get by army id                                     |
 | Get    |  validateQuestion                                                | get auth by army id                                     |
 
 **-------------------------------------------------------------------------------------------------------------------------------------**
 
 ### create
-post a person
+post a user
 #### Paramters
 | Name   | Type   | Description                                                    |
-| personname  | string | army id of the person  |
-| firstName  | string | first name of the person  |
-| lastName  | string | lastname of the person  |
+| username  | string | army id of the user  |
+| firstName  | string | first name of the user  |
+| lastName  | string | lastname of the user  |
 | permissions  | permissionType | basic, mada or segel  |
-| validationQuestion  | {string, string} | the question and the anwer of the person  |
+| validationQuestion  | {string, string} | the question and the anwer of the user  |
 
 #### Response
 ```typescript
 "status": "200 OK"
 {
-    "personname": "8599492",
+    "username": "8599492",
     "firstName": "string",
     "lastName": "string",
     "permissions": ["QUESTION1"],
@@ -64,17 +64,17 @@ post a person
 }
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
-### getBypersonname
-get a person
+### getByusername
+get a user
 #### Paramters
 | Name   | Type   | Description                                                    |
-| personname  | string | the personname of the person in the params |
+| username  | string | the username of the user in the params |
 
 #### Response
 ```typescript
 "status": "200 OK"
 {
-    "personname": "8599492",
+    "username": "8599492",
     "firstName": "string",
     "lastName": "string",
     "permissions": ["QUESTION1"],
@@ -86,21 +86,21 @@ get a person
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
 
-### updateBypersonname
-update a person
+### updateByusername
+update a user
 #### Paramters
 | Name   | Type   | Description                                                    |
-| personname  | string | army id of the person  |
-| firstName  | string | first name of the person  |
-| lastName  | string | lastname of the person  |
+| username  | string | army id of the user  |
+| firstName  | string | first name of the user  |
+| lastName  | string | lastname of the user  |
 | permissions  | permissionType | basic, mada or segel  |
-| validationQuestion  | {string, string} | the question and the anwer of the person  |
+| validationQuestion  | {string, string} | the question and the anwer of the user  |
 
 #### Response
 ```typescript
 "status": "200 OK"
 {
-    "personname": "8599492",
+    "username": "8599492",
     "firstName": "string",
     "lastName": "string",
     "permissions": ["QUESTION1"],
@@ -112,12 +112,12 @@ update a person
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
 ### validateQuestion
-authenticate the question and answer of a person
+authenticate the question and answer of a user
 #### Paramters
 | Name   | Type   | Description                                                    |
-| personname  | string | army id of the person  |
-| question  | string | question  of the person  |
-| answer  | string | answer of the person  |
+| username  | string | army id of the user  |
+| question  | string | question  of the user  |
+| answer  | string | answer of the user  |
 
 #### Response
 ```typescript
