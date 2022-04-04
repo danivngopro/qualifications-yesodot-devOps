@@ -34,3 +34,4 @@ export const ValidateRequest = (schema: Joi.ObjectSchema<any>, options: Joi.Vali
 
   return wrapValidator(validator);
 };
+

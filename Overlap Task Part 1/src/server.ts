@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as express from 'express';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';

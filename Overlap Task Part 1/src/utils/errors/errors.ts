@@ -13,8 +13,8 @@ export class ApplicationError extends Error implements jayson.JSONRPCError {
   }
 }
 
-export class UserError extends ApplicationError {
-  constructor(message = 'User Error', status = 400) {
+export class PersonError extends ApplicationError {
+  constructor(message = 'Person Error', status = 400) {
     super(message, status);
   }
 }
@@ -29,4 +29,4 @@ export class ServerError extends ApplicationError {
   constructor(message = 'Server Error', status = 500) {
     super(message, status);
   }
-}
+

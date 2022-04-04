@@ -26,4 +26,5 @@ export const errorMiddleware = (error: Error, _req: express.Request, res: expres
   }
 
   next(error);
-};
+
+}

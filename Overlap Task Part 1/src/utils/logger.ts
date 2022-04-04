@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { inspect } from 'util';
 import { SeverityLevel } from './severityLevel';
 
@@ -11,4 +10,4 @@ export const logger = {
       }));
     }
   },
-};
+}
