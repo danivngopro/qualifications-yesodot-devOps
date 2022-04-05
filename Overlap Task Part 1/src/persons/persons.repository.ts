@@ -6,7 +6,15 @@ export class PersonRepository {
     return PersonModel.create(newPerson);
   }
 
-  static searchAuthor(firstName: string): Promise<Person[]>{
-    return PersonModel.find({firstName}).exec();
+  static getPersonByID(personId: string): Promise<Person[]>{
+    return PersonModel.find({personId}).exec();
+  }
+
+  static updatePersonByID(userId: string, postData: Partial<Person>): Promise<Person | null> {
+    return PersonModel.findByIdAndUpdate(userId, postData, {new: true}).exec();
+  } 
+
+  static deletePersonByID(personId: string): Promise<Person | null> {
+    return PersonModel.findByIdAndDelete(personId).exec();
   }
 }
