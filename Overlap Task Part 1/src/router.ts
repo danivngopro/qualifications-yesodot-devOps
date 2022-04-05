@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { UserRouter } from './users/users.router';
+import { UserRouter } from './groups/groups.router';
 
 const AppRouter: Router = Router();
 
