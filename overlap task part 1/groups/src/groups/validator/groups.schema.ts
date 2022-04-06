@@ -1,11 +1,7 @@
 import * as Joi from 'joi';
 
 const GroupSchema = Joi.object({
-  firstName: Joi.string().default(''),
-  lastName: Joi.string().default(''),
-  groupname: Joi.string().default(''),
-  email: Joi.string().regex(/^\S+@\S+\.\S+$/).default(''),
-  password: Joi.string().default(''),
+  groupName: Joi.string().default(''),
 });
 
 const IdSchema = Joi.object({

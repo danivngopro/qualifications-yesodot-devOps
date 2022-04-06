@@ -8,7 +8,7 @@ import {
 
 const GroupRouter: Router = Router();
 
-GroupRouter.post('/createGroup', ValidateRequest(createGroupReqSchema), wrapAsync(GroupController.create));
+GroupRouter.post('/', ValidateRequest(createGroupReqSchema), wrapAsync(GroupController.create));
 GroupRouter.get('/id/:id', ValidateRequest(getByIdReqSchema), wrapAsync(GroupController.findGroupByID));
 GroupRouter.put('/id/:id', ValidateRequest(updatByIdSchema),wrapAsync(GroupController.updateGroupByID));
 GroupRouter.delete('/id/:id', ValidateRequest(getByIdReqSchema),wrapAsync(GroupController.deleteGroupByID));

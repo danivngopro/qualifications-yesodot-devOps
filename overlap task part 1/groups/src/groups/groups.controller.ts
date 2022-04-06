@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Group } from '../persons/persons.interface';
+import { Group } from '../groups/groups.interface';
 import { GroupManager } from './groups.manager';
 
 export class GroupController {

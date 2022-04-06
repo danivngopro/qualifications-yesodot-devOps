@@ -1,8 +1,6 @@
 export interface Group {
   id?: string;
-  firstName: string;
-  lastName: string;
-  groupname: string;
-  email: string;
-  password: string;
+  groupName: string;
+  participantsId: number[];
+  subgroupsId: number[];
 }

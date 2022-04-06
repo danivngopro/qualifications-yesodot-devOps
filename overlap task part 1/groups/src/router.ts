@@ -3,7 +3,7 @@ import { GroupRouter } from './groups/groups.router';
 
 const AppRouter: Router = Router();
 
-AppRouter.use('/api/persons', GroupRouter);
+AppRouter.use('/api/groups', GroupRouter);
 
 AppRouter.use('/isalive', (_req, res) => {
   res.status(200).send('alive');

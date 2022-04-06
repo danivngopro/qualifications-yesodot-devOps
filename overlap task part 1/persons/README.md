@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # PERSONS Crud
 ## Table of Contents
 - [Full Setup](#full-setup)
@@ -126,7 +125,6 @@ authenticate the question and answer of a person
 true
 ```
 **-----------------------------------------------------------------------------------------------------------------------------------------**
-=======
 # PERSONS Crud
 ## Table of Contents
 - [Full Setup](#full-setup)
