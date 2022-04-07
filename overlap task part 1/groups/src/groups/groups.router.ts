@@ -12,6 +12,7 @@ GroupRouter.post('/', ValidateRequest(createGroupReqSchema), wrapAsync(GroupCont
 GroupRouter.get('/id/:id', ValidateRequest(getByIdReqSchema), wrapAsync(GroupController.findGroupByID));
 GroupRouter.put('/id/:id', ValidateRequest(updatByIdSchema),wrapAsync(GroupController.updateGroupByID));
 GroupRouter.delete('/id/:id', ValidateRequest(getByIdReqSchema),wrapAsync(GroupController.deleteGroupByID));
+GroupRouter.put('/id/:id', ValidateRequest(updatByIdSchema), wrapAsync(GroupController.addPerson));
 
 
 export { GroupRouter };

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { GroupRepository } from './groups.repository';
 import { Group } from './groups.interface';
-import { GroupNotFound } from '../utils/errors/group';
+import { GroupNotFound, personIsExists } from '../utils/errors/group';
 
 export class GroupManager {
   static async create(newGroup: Group): Promise<Group> {
@@ -27,8 +27,24 @@ export class GroupManager {
 
   static async deleteGroupByID(groupId: string): Promise<Group> {
     const deletedGroup: any =  GroupRepository.deleteGroupByID(groupId);
+    console.log( await GroupRepository.findGroupByID("624ebe36b911ce4cb5ad6807"))
     if(deletedGroup != null){
       return deletedGroup;
+    } else{
+      throw new GroupNotFound;
+    }
+  }
+
+  static async addPerson(groupId: string, personId: string): Promise<Group> {
+    const updateGroup: any = await GroupRepository.addPeron(groupId, personId);
+    const group = await GroupRepository.findGroupByID(groupId);
+    group.forEach(element => { 
+      if(String(element.participantsId) === personId){
+        throw new personIsExists;
+      }
+    });  
+    if(updateGroup){
+      return updateGroup;
     } else{
       throw new GroupNotFound;
     }

@@ -1,3 +1,4 @@
+import { array } from 'joi';
 import { Group } from './groups.interface';
 import { GroupModel } from './groups.model';
 
@@ -16,5 +17,11 @@ export class GroupRepository {
   
   static deleteGroupByID(groupId: string): Promise<Group | null> {
     return GroupModel.findByIdAndDelete(groupId).exec();
+  }
+
+  static addPeron(groupId: string, personId: string): Promise<Group | null> {
+    const demoArr: Array<string> = [personId];
+    const copy = GroupModel.find({"id":groupId});     
+    {$set: demoArr, copy}
   }
 }
