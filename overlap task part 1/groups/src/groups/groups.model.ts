@@ -5,12 +5,14 @@ const groupSchema: mongoose.Schema = new mongoose.Schema({
   groupName: {
     type: String,
     required: true,
+    unique: true
   },
-  participantsId: {
+  participants: {
     type: Array,
     required: true,
+    // default: true,
   },
-  subgroupsId: {
+  subgroups: {
     type: Array,
     required: true,  
   },

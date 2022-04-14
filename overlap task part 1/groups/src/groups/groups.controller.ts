@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Group } from '../groups/groups.interface';
 import { GroupManager } from './groups.manager';
-//import { GroupModel } from './groups.model';
+
 
 export class GroupController {
   static async create(req: Request, res: Response): Promise<void> {
@@ -26,8 +26,18 @@ export class GroupController {
 
   static async addPerson(req: Request, res: Response): Promise<void> {
     const groupId = req.params.id as string;
-    const personId = req.body.id as string;
-    //const postData = GroupModel.findGroupByID(groupId).participantsId().push(personId);
+    const personId = req.body.personId as string;
     res.json(await GroupManager.addPerson(groupId, personId));
+  }
+
+  static async addSubgroup(req: Request, res: Response): Promise<void> {
+    const mainGroupId = req.params.id as string;
+    const becomeASubgroupId = req.body.groupId as string;
+    if(!becomeASubgroupId){
+      const subgroup = req.body as Group;
+      const subgroupId = (await GroupManager.create(subgroup)).id as string;
+      res.json(await GroupManager.addSubgroup(mainGroupId, subgroupId));
+    }
+    res.json(await GroupManager.addSubgroup(mainGroupId, becomeASubgroupId));
   }
 }
