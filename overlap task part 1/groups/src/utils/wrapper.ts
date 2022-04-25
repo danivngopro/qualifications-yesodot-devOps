@@ -5,7 +5,6 @@ export const wrapValidator = (func: (req: Request) => Promise<void>) => (req: Re
 };
 
 export const wrapAsync = (func: (req: Request, res: Response, next: NextFunction) => Promise<void>) => (req: Request, res: Response, next: NextFunction): void => {
-  console.log(123);
   
   func(req, res, next).catch(next);
 };

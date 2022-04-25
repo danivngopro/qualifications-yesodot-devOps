@@ -34,10 +34,12 @@ export class GroupController {
     const mainGroupId = req.params.id as string;
     const becomeASubgroupId = req.body.groupId as string;
     if(!becomeASubgroupId){
-      const subgroup = req.body as Group;
-      const subgroupId = (await GroupManager.create(subgroup)).id as string;
+      const group: Group = await GroupManager.create(req.body);
+      const subgroupId = group.id as string;
       res.json(await GroupManager.addSubgroup(mainGroupId, subgroupId));
     }
-    res.json(await GroupManager.addSubgroup(mainGroupId, becomeASubgroupId));
+    else{
+      res.json(await GroupManager.addSubgroup(mainGroupId, becomeASubgroupId));
+    }
   }
 }
