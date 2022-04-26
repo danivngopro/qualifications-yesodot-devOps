@@ -23,9 +23,6 @@ export class GroupRepository {
 
   static async deleteSubgroups(group: any): Promise<void> {
     const subgroups = group?.subgroups;
-    // subgroups.forEach(async subgroupId => {
-    //    await GroupModel.findByIdAndDelete(subgroupId).exec();
-    // });
     for (const subgroupId of subgroups) {
       await GroupModel.findByIdAndDelete(subgroupId).exec();
     }
@@ -39,7 +36,6 @@ export class GroupRepository {
     const group: Group | null = await GroupModel.findById(mainGroupId);
     if (!group) throw new GroupNotFound;
     const flag = await GroupRepository.doesTheGroupExist(group, subgroupId);
-    console.log(flag)
     if (flag === true) {
       throw new groupIsAlreadyExists
     }
