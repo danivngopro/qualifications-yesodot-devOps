@@ -1,6 +1,6 @@
 import { GroupRepository } from './groups.repository';
 import { Group } from './groups.interface';
-import { GroupNotFound } from '../utils/errors/group';
+import { groupIsAlreadyExists, GroupNotFound } from '../utils/errors/group';
 
 
 export class GroupManager {
@@ -44,12 +44,34 @@ export class GroupManager {
   }
 
   static async addSubgroup(mainGroupId: string, subgroupId: string): Promise<Group> {
+    const group = await GroupRepository.findById(mainGroupId) as Group;
+    const flag = await GroupManager.doesTheGroupExist(group, subgroupId);
+    if (flag === true) {
+      throw new groupIsAlreadyExists
+    }
     const updateGroup: any = await GroupRepository.addSubgroup(mainGroupId, subgroupId);
     if(updateGroup){
       return updateGroup;
     } else{
       throw new GroupNotFound;
     }
+  }
+
+  static async doesTheGroupExist(group: Group, newSubgroupId: string): Promise<boolean> {
+    const mainGroupId = group.id;
+    if (mainGroupId === newSubgroupId) {
+      return true;
+    }
+    const subgroups = group.subgroups;
+    if (!subgroups) return false;
+    for (const subgroupId of subgroups) {
+      const group = await GroupRepository.findById(subgroupId);
+      const doseGroupExists = await GroupManager.doesTheGroupExist(group as Group, newSubgroupId);
+      if (doseGroupExists === true) {
+        return true;
+      }
+    };
+    return false;
   }
 
 }

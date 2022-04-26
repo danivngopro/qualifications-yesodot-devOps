@@ -3,6 +3,10 @@ import { Group } from './groups.interface';
 import { GroupModel } from './groups.model';
 
 export class GroupRepository {
+  static findById(mainGroupId: string): Group | PromiseLike<Group> {
+    const a = GroupModel.findById(mainGroupId) as unknown as Group;
+    return a;
+  }
   static create(newGroup: Group): Promise<Group> {
     return GroupModel.create(newGroup);
   }
