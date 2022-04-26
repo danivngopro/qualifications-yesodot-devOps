@@ -45,6 +45,7 @@ export class GroupManager {
 
   static async addSubgroup(mainGroupId: string, subgroupId: string): Promise<Group> {
     const group = await GroupRepository.findById(mainGroupId) as Group;
+    if (!group) throw new GroupNotFound;
     const flag = await GroupManager.doesTheGroupExist(group, subgroupId);
     if (flag === true) {
       throw new groupIsAlreadyExists
