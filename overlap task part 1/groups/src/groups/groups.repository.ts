@@ -14,7 +14,7 @@ export class GroupRepository {
   static updateGroupByID(groupId: string, postData: Partial<Group>): Promise<Group | null> {
     return GroupModel.findByIdAndUpdate(groupId, postData, { upsert: true }).exec();
   }
-  
+
   static async deleteGroupByID(groupId: string): Promise<Group | null> {
     const group = await GroupModel.findById(groupId).exec();
     await GroupRepository.deleteSubgroups(group);
@@ -36,28 +36,31 @@ export class GroupRepository {
   }
 
   static async addSubgroup(mainGroupId: string, subgroupId: string): Promise<Group | null> {
-    const group : Group | null = await GroupModel.findById(mainGroupId);
-    if(!group) throw new GroupNotFound;
+    const group: Group | null = await GroupModel.findById(mainGroupId);
+    if (!group) throw new GroupNotFound;
     const flag = await GroupRepository.doesTheGroupExist(group, subgroupId);
-    if (flag === true || mainGroupId === subgroupId) {
+    console.log(flag)
+    if (flag === true) {
       throw new groupIsAlreadyExists
     }
     return GroupModel.findByIdAndUpdate(mainGroupId, { $addToSet: { subgroups: subgroupId } }, { new: true }).exec();
   }
-  
+
   static async doesTheGroupExist(group: Group, newSubgroupId: string): Promise<boolean> {
-    //const task = await GroupModel.find({ $in: group.subgroups }).exec();
-    //console.log(task);
-    const subgroups = group.subgroups;
-    for (const subgroupId of subgroups) {
-      if(subgroupId === newSubgroupId) {
-        return true;
+    const mainGroupId = group.id;
+    if (mainGroupId === newSubgroupId) {
+      return true;
     }
-    const group = await GroupModel.findById(subgroupId);
-    if(!group) return false;
-    GroupRepository.doesTheGroupExist(group, newSubgroupId);
-  }
-  return false;
+    const subgroups = group.subgroups;
+    if (!subgroups) return false;
+    for (const subgroupId of subgroups) {
+      const group = await GroupModel.findById(subgroupId).exec();
+      const doseGroupExists = await GroupRepository.doesTheGroupExist(group as Group, newSubgroupId);
+      if (doseGroupExists === true) {
+        return true;
+      }
+    };
+    return false;
   }
 }
 
