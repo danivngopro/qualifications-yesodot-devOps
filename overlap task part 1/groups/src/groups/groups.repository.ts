@@ -38,6 +38,10 @@ export class GroupRepository {
   static async addSubgroup(mainGroupId: string, subgroupId: string): Promise<Group | null> {
     return GroupModel.findByIdAndUpdate(mainGroupId, { $addToSet: { subgroups: subgroupId } }, { new: true }).exec();
   }
+
+  static showGroupHierarchy(id: string, groups: Group[]): Promise<Group[]> {
+    return GroupModel.find({ id }, groups).exec();
+  }
 }
 
 

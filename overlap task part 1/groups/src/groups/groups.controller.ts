@@ -42,4 +42,11 @@ export class GroupController {
       res.json(await GroupManager.addSubgroup(mainGroupId, becomeASubgroupId));
     }
   }
+
+  static async showGroupHierarchy(req: Request, res: Response): Promise<void> {
+    const groupId = req.params.id as string;
+    const groups = [];
+    res.json(await GroupManager. showGroupHierarchy(groupId, groups));
+  }
+ 
 }

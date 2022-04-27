@@ -66,13 +66,26 @@ export class GroupManager {
     const subgroups = group.subgroups;
     if (!subgroups) return false;
     for (const subgroupId of subgroups) {
-      const group = await GroupRepository.findById(subgroupId);
-      const doseGroupExists = await GroupManager.doesTheGroupExist(group as Group, newSubgroupId);
+      const group = await GroupRepository.findGroupByID(subgroupId);
+      const doseGroupExists = await GroupManager.doesTheGroupExist(group as unknown as Group, newSubgroupId);
       if (doseGroupExists === true) {
         return true;
       }
     };
     return false;
+  }
+
+  static async showGroupHierarchy(groupId: string, groups: Group[]) {
+    const group = await GroupRepository.findById(groupId) as Group;
+    const subgroups = group.subgroups;
+    if(subgroups){
+      for(const groupId of subgroups){
+        const group = await GroupRepository.findById(groupId)
+        groups.push(group);
+        GroupManager.showGroupHierarchy(groupId, groups);
+      }
+    }
+    return groups;
   }
 
 }

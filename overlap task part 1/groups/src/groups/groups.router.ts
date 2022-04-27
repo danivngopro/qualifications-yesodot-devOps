@@ -14,6 +14,7 @@ GroupRouter.put('/id/:id', ValidateRequest(updatByIdSchema),wrapAsync(GroupContr
 GroupRouter.delete('/id/:id', ValidateRequest(getByIdReqSchema),wrapAsync(GroupController.deleteGroupByID));
 GroupRouter.put('/addPerson/id/:id', ValidateRequest(addPersonToGroupSchema), wrapAsync(GroupController.addPerson));
 GroupRouter.post('/addSubgroup/id/:id', ValidateRequest(addsubgroupToGroupSchema), wrapAsync(GroupController.addSubgroup));
+GroupRouter.get('/hierarchy/id/:id', ValidateRequest(getByIdReqSchema), wrapAsync(GroupController.showGroupHierarchy));
 
 export { GroupRouter };
 
