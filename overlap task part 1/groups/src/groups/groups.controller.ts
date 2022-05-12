@@ -10,6 +10,7 @@ export class GroupController {
 
   static async findGroupByID(req: Request, res: Response): Promise<void> {
     const groupId = req.params.id as string;
+    console.log(groupId);
     res.json(await GroupManager.findGroupByID(groupId));
   }
   
@@ -47,6 +48,11 @@ export class GroupController {
     const groupId = req.params.id as string;
     const groups = [];
     res.json(await GroupManager. showGroupHierarchy(groupId, groups));
+  }
+
+  static async getPersonGroups(req: Request, res: Response): Promise<void> {
+    const personId = req.params.id as string;
+    res.json(await GroupManager.getPersonGroups(personId));
   }
  
 }

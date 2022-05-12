@@ -16,5 +16,8 @@ export const config = {
       .default('groups-crud')
       .asString(),
   },
+  // mongo: {
+  //   url: env.get('MONGO_CONNECTION_STRING').default(`mongodb://${env.get('MONGO_CONTAINER_NAME').default('localhost').asString()}:${env.get('MONGO_PORT').default('27017').asPortNumber()}/${env.get('MONGO_DB_NAME').default('groups').asString()}`).asString(),
+  // },
 };
 

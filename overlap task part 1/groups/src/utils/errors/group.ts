@@ -23,3 +23,9 @@ export class groupIsAlreadyExists extends GroupError {
     super('Group is already exists', 404);
   }
 }
+
+export class PersonNotFound extends GroupError {
+  constructor() {
+    super('Person not found', 404);
+  }
+}

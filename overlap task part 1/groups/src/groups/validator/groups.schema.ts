@@ -3,7 +3,8 @@ import * as Joi from 'joi';
 
 const GroupSchema = Joi.object({
   groupName: Joi.string(),
-  groupId: Joi.string(), 
+  participants: Joi.array().items(Joi.string()).default([]),
+  subgroups: Joi.array().items(Joi.string()).default([]),
 });
 
 const PersonSchema = Joi.object({
@@ -43,3 +44,5 @@ export const addsubgroupToGroupSchema = Joi.object({
   query: {},
   params: IdSchema,
 });
+
+

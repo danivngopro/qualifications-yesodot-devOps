@@ -9,8 +9,8 @@ export class GroupManager {
   }
 
   static async findGroupByID(groupId: string) {
-    const group = GroupRepository.findGroupByID(groupId);
-    if((await group).length === 0 ){
+    const group = await GroupRepository.findGroupByID(groupId);
+    if (!group) {
       throw new GroupNotFound;
     }
     return group;
@@ -18,29 +18,24 @@ export class GroupManager {
 
   static async updateGroupByID(groupId: string, postData: Partial<Group>): Promise<Group> {
     const updateGroup = await GroupRepository.updateGroupByID(groupId, postData);
-    if(updateGroup){
-      return updateGroup;
-    } else{
+    console.log('updateGroup:', updateGroup);
+    if (!updateGroup) {
       throw new GroupNotFound;
+    } else {
+      return updateGroup;
     }
   }
 
   static async deleteGroupByID(groupId: string): Promise<Group> {
-    const deletedGroup: any =  GroupRepository.deleteGroupByID(groupId);
-    if(deletedGroup != null){
-      return deletedGroup;
-    } else{
-      throw new GroupNotFound;
-    }
+    const deletedGroup: any = await GroupRepository.deleteGroupByID(groupId);
+    if (!deletedGroup) throw new GroupNotFound;
+    return deletedGroup;
   }
 
   static async addPerson(groupId: string, personId: string): Promise<Group> {
     const updateGroup: any = await GroupRepository.addPeron(groupId, personId);
-    if(updateGroup){
-      return updateGroup;
-    } else{
-      throw new GroupNotFound;
-    }
+    if (!updateGroup) throw new GroupNotFound;
+    else return updateGroup;
   }
 
   static async addSubgroup(mainGroupId: string, subgroupId: string): Promise<Group> {
@@ -51,9 +46,9 @@ export class GroupManager {
       throw new groupIsAlreadyExists
     }
     const updateGroup: any = await GroupRepository.addSubgroup(mainGroupId, subgroupId);
-    if(updateGroup){
+    if (updateGroup) {
       return updateGroup;
-    } else{
+    } else {
       throw new GroupNotFound;
     }
   }
@@ -78,8 +73,8 @@ export class GroupManager {
   static async showGroupHierarchy(groupId: string, groups: Group[]) {
     const group = await GroupRepository.findById(groupId) as Group;
     const subgroups = group.subgroups;
-    if(subgroups){
-      for(const groupId of subgroups){
+    if (subgroups) {
+      for (const groupId of subgroups) {
         const group = await GroupRepository.findById(groupId)
         groups.push(group);
         GroupManager.showGroupHierarchy(groupId, groups);
@@ -88,4 +83,20 @@ export class GroupManager {
     return groups;
   }
 
+  static async getPersonGroups(personId: string) {
+    const groups = await GroupRepository.gelAllGroups();
+    const participantGroups: string[] = [];
+    if (groups) {
+      for (const group of groups) {
+        const groupName = group.groupName;
+        for (const participantId of group.participants) {
+          if (participantId === personId) {
+            participantGroups.push(groupName);
+          }
+        }
+      }
+
+    }
+    return participantGroups;
+  }
 }

@@ -3,7 +3,7 @@ import { wrapAsync } from '../utils/wrapper';
 import { ValidateRequest } from '../utils/joi';
 import { GroupController } from './groups.controller';
 import {
-  createGroupReqSchema, getByIdReqSchema,addPersonToGroupSchema, updatByIdSchema, addsubgroupToGroupSchema
+  createGroupReqSchema, getByIdReqSchema,addPersonToGroupSchema, updatByIdSchema, addsubgroupToGroupSchema, 
 } from './validator/groups.schema';
 
 const GroupRouter: Router = Router();
@@ -15,6 +15,7 @@ GroupRouter.delete('/id/:id', ValidateRequest(getByIdReqSchema),wrapAsync(GroupC
 GroupRouter.put('/addPerson/id/:id', ValidateRequest(addPersonToGroupSchema), wrapAsync(GroupController.addPerson));
 GroupRouter.post('/addSubgroup/id/:id', ValidateRequest(addsubgroupToGroupSchema), wrapAsync(GroupController.addSubgroup));
 GroupRouter.get('/hierarchy/id/:id', ValidateRequest(getByIdReqSchema), wrapAsync(GroupController.showGroupHierarchy));
+GroupRouter.get('/personGroups/id/:id', ValidateRequest(getByIdReqSchema), wrapAsync(GroupController.getPersonGroups));
 
 export { GroupRouter };
 
