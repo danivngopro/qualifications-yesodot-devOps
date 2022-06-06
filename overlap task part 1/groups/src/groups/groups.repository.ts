@@ -39,7 +39,8 @@ export class GroupRepository {
     }
   }
 
-  static addPeron(groupId: string, personId: Partial<string>): Promise<Group | null> {
+  static addPeron(groupId: string, personId: Partial<string>): Promise<Group | null> { 
+    console.log('groupId at repository:', groupId);
     return GroupModel.findByIdAndUpdate(groupId, { $addToSet: { participants: personId } }, { new: true }).exec();
   }
 

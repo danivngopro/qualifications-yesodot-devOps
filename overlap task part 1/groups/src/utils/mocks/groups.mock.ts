@@ -2,10 +2,9 @@ import { Group } from '../../groups/groups.interface';
 
 export const validGroup: Group = {
     //id: '123456d234561g345612h456',
-    groupName: 'string',
+    groupName: '123',
     participants: [],
-    subgroups: [],
-    db: undefined
+    subgroups: []
 };
 
 export const invalidGroup: Partial<Group> = {

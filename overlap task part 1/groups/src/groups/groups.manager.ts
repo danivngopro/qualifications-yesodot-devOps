@@ -27,13 +27,14 @@ export class GroupManager {
   }
 
   static async deleteGroupByID(groupId: string): Promise<Group> {
-    const deletedGroup: any = await GroupRepository.deleteGroupByID(groupId);
+    const deletedGroup = await GroupRepository.deleteGroupByID(groupId);
     if (!deletedGroup) throw new GroupNotFound;
     return deletedGroup;
   }
 
   static async addPerson(groupId: string, personId: string): Promise<Group> {
-    const updateGroup: any = await GroupRepository.addPeron(groupId, personId);
+    const updateGroup = await GroupRepository.addPeron(groupId, personId);
+    console.log('updateGroup at Manager:', updateGroup);
     if (!updateGroup) throw new GroupNotFound;
     else return updateGroup;
   }
@@ -45,7 +46,7 @@ export class GroupManager {
     if (flag === true) {
       throw new groupIsAlreadyExists
     }
-    const updateGroup: any = await GroupRepository.addSubgroup(mainGroupId, subgroupId);
+    const updateGroup = await GroupRepository.addSubgroup(mainGroupId, subgroupId);
     if (updateGroup) {
       return updateGroup;
     } else {
