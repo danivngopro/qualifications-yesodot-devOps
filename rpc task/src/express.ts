@@ -12,7 +12,7 @@ app.get('/numbers', (req: express.Request, res: express.Response) => {
   });
 });
 
-app.listen(3030, () => { });
+app.listen(3030);
 
 
 
